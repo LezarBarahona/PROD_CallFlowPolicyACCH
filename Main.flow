@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<File>
+  <Version>2.1</Version>
+  <Variables>
+    <ArrayOfVariable xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Variable>
+        <Name>textAudio</Name>
+        <ShowScopeProperty>true</ShowScopeProperty>
+        <DebuggerVisible>true</DebuggerVisible>
+        <HelpText />
+      </Variable>
+      <Variable>
+        <Name>textOptionExhibit</Name>
+        <ShowScopeProperty>true</ShowScopeProperty>
+        <DebuggerVisible>true</DebuggerVisible>
+        <HelpText />
+      </Variable>
+      <Variable>
+        <Name>anexoEjecutivo</Name>
+        <InitialValue>8002</InitialValue>
+        <ShowScopeProperty>false</ShowScopeProperty>
+        <DebuggerVisible>true</DebuggerVisible>
+        <HelpText />
+      </Variable>
+      <Variable>
+        <Name>ContinueLoopingOption</Name>
+        <InitialValue>true</InitialValue>
+        <ShowScopeProperty>false</ShowScopeProperty>
+        <DebuggerVisible>true</DebuggerVisible>
+        <HelpText />
+      </Variable>
+    </ArrayOfVariable>
+  </Variables>
+  <Flows>
+    <MainFlow>
+      <ns0:MainFlow Description="Callflow execution path." DebugModeActive="False" x:Name="Main" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ns0="clr-namespace:TCX.CFD.Classes.Components;Assembly=3CX Call Flow Designer, Version=18.5.8.0, Culture=neutral, PublicKeyToken=7cb95a1a133e706e">
+        <ns0:UserInputComponent AcceptDtmfInput="True" FinalDigitTimeout="3" StopDigit="None" IsValidDigit_3="True" IsValidDigit_0="True" IsValidDigit_1="True" IsValidDigit_Pound="False" InvalidDigitPromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;transferirEjecutivo.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" IsValidDigit_7="True" IsValidDigit_4="True" IsValidDigit_5="True" SubsequentPromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;transferirEjecutivo.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" IsValidDigit_2="True" InterDigitTimeout="8" IsValidDigit_6="True" MinDigits="1" InitialPromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;1_ingreseRut.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" x:Name="IngreseRut" MaxRetryCount="3" DebugModeActive="False" FirstDigitTimeout="6" MaxDigits="10" Tag="" IsValidDigit_8="True" IsValidDigit_9="True" IsValidDigit_Star="True" TimeoutPromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; /&gt;">
+          <ns0:ComponentBranch DisplayedText="Valid Input" Description="Execution path when the specified branch is activated." Tag="" DebugModeActive="False" x:Name="componentBranch1">
+            <ns0:LoopComponent Condition="callflow$.ContinueLoopingOption" Description="Execution path when the specified condition is met." Tag="" DebugModeActive="False" x:Name="Loop1">
+              <ns0:VariableAssignmentComponent VariableName="callflow$.ContinueLoopingOption" Tag="" DebugModeActive="False" Expression="false" x:Name="ContinueLoopingOptionFalse" />
+              <ns0:ConditionalComponent Tag="" DebugModeActive="False" x:Name="ConditionInputRut">
+                <ns0:ConditionalComponentBranch Condition="NOT_EQUAL(IngreseRut.Buffer,&quot;0&quot;)" Description="Execution path when the specified condition is met." Tag="" DebugModeActive="False" x:Name="input_notequal_zero">
+                  <ns0:WebServiceRestComponent Timeout="30" AuthenticationOAuth2AccessToken="" x:Name="ivrapi" Content="&quot;&quot;" Tag="" HeaderList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfParameter xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Parameter&gt;&lt;Name&gt;Ocp-Apim-Subscription-Key&lt;/Name&gt;&lt;Value&gt;&quot;337c862072c04edb9b3f0a3feb252569&quot;&lt;/Value&gt;&lt;/Parameter&gt;&lt;/ArrayOfParameter&gt;" HttpRequestType="GET" URI="CONCATENATE(&quot;https://macc-ivrapi-apimng-prod.azure-api.net/macc-ivrapi-function-prod/InsurancePolicyAudioByRut/&quot;,IngreseRut.Buffer)" ContentType="application/x-www-form-urlencoded" AuthenticationUserName="" AuthenticationType="None" DebugModeActive="False" AuthenticationPassword="" AuthenticationApiKey="" />
+                  <ns0:JsonXmlParserComponent ResponseMappingsList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfResponseMapping xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;ResponseMapping&gt;&lt;Path&gt;textAudio&lt;/Path&gt;&lt;Variable&gt;callflow$.textAudio&lt;/Variable&gt;&lt;/ResponseMapping&gt;&lt;ResponseMapping&gt;&lt;Path&gt;textOptionExhibit&lt;/Path&gt;&lt;Variable&gt;callflow$.textOptionExhibit&lt;/Variable&gt;&lt;/ResponseMapping&gt;&lt;/ArrayOfResponseMapping&gt;" Input="ivrapi.ResponseContent" Tag="" DebugModeActive="False" TextType="JSON" x:Name="JsonXmlParser1" />
+                  <ns0:UserInputComponent AcceptDtmfInput="True" FinalDigitTimeout="2" StopDigit="None" IsValidDigit_3="True" IsValidDigit_0="True" IsValidDigit_1="True" IsValidDigit_Pound="False" InvalidDigitPromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;TextToSpeechAudioPrompt&quot;&gt;&lt;VoiceName&gt;Lupe&lt;/VoiceName&gt;&lt;VoiceType&gt;Standard&lt;/VoiceType&gt;&lt;Format&gt;Text&lt;/Format&gt;&lt;Text&gt;&quot;opcion invalida&quot;&lt;/Text&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" IsValidDigit_7="True" IsValidDigit_4="True" IsValidDigit_5="True" SubsequentPromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;transferirEjecutivo.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" IsValidDigit_2="True" InterDigitTimeout="3" IsValidDigit_6="True" MinDigits="1" InitialPromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;TextToSpeechAudioPrompt&quot;&gt;&lt;VoiceName&gt;Lucia&lt;/VoiceName&gt;&lt;VoiceType&gt;Standard&lt;/VoiceType&gt;&lt;Format&gt;Text&lt;/Format&gt;&lt;Text&gt;callflow$.textAudio&lt;/Text&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" x:Name="IngreseOpcion" MaxRetryCount="3" DebugModeActive="False" FirstDigitTimeout="5" MaxDigits="1" Tag="" IsValidDigit_8="True" IsValidDigit_9="True" IsValidDigit_Star="False" TimeoutPromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; /&gt;">
+                    <ns0:ComponentBranch DisplayedText="Valid Input" Description="Execution path when the specified branch is activated." Tag="" DebugModeActive="False" x:Name="componentBranch3">
+                      <ns0:ExecuteCSharpCodeComponent ReturnsValue="True" Code="        string[] options = textOptionExhibit.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);&#xD;&#xA;&#xD;&#xA;        // Crear un arreglo de opciones&#xD;&#xA;        string[] optionArray = new string[options.Length];&#xD;&#xA;       &#xD;&#xA;        // Recorrer las opciones y eliminar espacios en blanco&#xD;&#xA;        for (int i = 0; i &lt; options.Length; i++)&#xD;&#xA;        {&#xD;&#xA;            if( options[i].Trim().Split(':')[0]== optionUser)&#xD;&#xA;           {&#xD;&#xA;               return options[i].Trim().Split(':')[1];&#xD;&#xA;           }&#xD;&#xA;        }&#xD;&#xA;return &quot;SO&quot;;" ParameterList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfScriptParameter xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;ScriptParameter&gt;&lt;Name&gt;jsonInput&lt;/Name&gt;&lt;Value&gt;ivrapi.ResponseContent&lt;/Value&gt;&lt;Type&gt;String&lt;/Type&gt;&lt;/ScriptParameter&gt;&lt;ScriptParameter&gt;&lt;Name&gt;optionUser&lt;/Name&gt;&lt;Value&gt;IngreseOpcion.Buffer&lt;/Value&gt;&lt;Type&gt;String&lt;/Type&gt;&lt;/ScriptParameter&gt;&lt;ScriptParameter&gt;&lt;Name&gt;textOptionExhibit&lt;/Name&gt;&lt;Value&gt;callflow$.textOptionExhibit&lt;/Value&gt;&lt;Type&gt;String&lt;/Type&gt;&lt;/ScriptParameter&gt;&lt;/ArrayOfScriptParameter&gt;" MethodName="anexo" Tag="" DebugModeActive="False" x:Name="ExecuteCSharpCodeAnexo" />
+                      <ns0:ConditionalComponent Tag="" DebugModeActive="False" x:Name="ConditionInputOption">
+                        <ns0:ConditionalComponentBranch Condition="EQUAL(IngreseOpcion.Buffer,&quot;0&quot;)" Description="Execution path when the specified condition is met." Tag="" DebugModeActive="False" x:Name="inputOpcion_equal_zero">
+                          <ns0:PromptPlaybackComponent Tag="" AcceptDtmfInput="True" DebugModeActive="False" PromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;transferirEjecutivo.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" x:Name="PromptEjecutivo" />
+                          <ns0:TransferComponent TransferToVoicemail="False" Destination="callflow$.anexoEjecutivo" Tag="" DebugModeActive="False" DelayMilliseconds="500" x:Name="TransferEjecutivo" />
+                        </ns0:ConditionalComponentBranch>
+                        <ns0:ConditionalComponentBranch Condition="NOT_EQUAL(ExecuteCSharpCodeAnexo.ReturnValue,&quot;SO&quot;)" Description="Execution path when the specified condition is met." Tag="" DebugModeActive="False" x:Name="inputOpcion_notequal_zero">
+                          <ns0:PromptPlaybackComponent Tag="" AcceptDtmfInput="True" DebugModeActive="False" PromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;transferirConvenio.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" x:Name="PromptConvenio" />
+                          <ns0:TransferComponent TransferToVoicemail="False" Destination="ExecuteCSharpCodeAnexo.ReturnValue" Tag="" DebugModeActive="False" DelayMilliseconds="500" x:Name="TransferConvenio" />
+                        </ns0:ConditionalComponentBranch>
+                        <ns0:ConditionalComponentBranch Condition="EQUAL(IngreseOpcion.Buffer,&quot;9&quot;)" Description="Execution path when the specified condition is met." Tag="" DebugModeActive="False" x:Name="conditionalComponentBranch1">
+                          <ns0:VariableAssignmentComponent VariableName="callflow$.ContinueLoopingOption" Tag="" DebugModeActive="False" Expression="true" x:Name="AssignVariable2" />
+                        </ns0:ConditionalComponentBranch>
+                      </ns0:ConditionalComponent>
+                    </ns0:ComponentBranch>
+                    <ns0:ComponentBranch DisplayedText="Invalid Input" Description="Execution path when the specified branch is activated." Tag="" DebugModeActive="False" x:Name="componentBranch4">
+                      <ns0:PromptPlaybackComponent Tag="" AcceptDtmfInput="True" DebugModeActive="False" PromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;transferirEjecutivo.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" x:Name="PromptEjecutivo2" />
+                      <ns0:TransferComponent TransferToVoicemail="False" Destination="callflow$.anexoEjecutivo" Tag="" DebugModeActive="False" DelayMilliseconds="500" x:Name="TransferEjecutivo2" />
+                    </ns0:ComponentBranch>
+                  </ns0:UserInputComponent>
+                </ns0:ConditionalComponentBranch>
+                <ns0:ConditionalComponentBranch Condition="EQUAL(IngreseRut.Buffer,&quot;0&quot;)" Description="Execution path when the specified condition is met." Tag="" DebugModeActive="False" x:Name="input_equal_zero">
+                  <ns0:PromptPlaybackComponent Tag="" AcceptDtmfInput="True" DebugModeActive="False" PromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;transferirEjecutivo.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" x:Name="PromptEjecutivo4" />
+                  <ns0:TransferComponent TransferToVoicemail="False" Destination="callflow$.anexoEjecutivo" Tag="" DebugModeActive="False" DelayMilliseconds="500" x:Name="TransferEjecutivo4" />
+                </ns0:ConditionalComponentBranch>
+              </ns0:ConditionalComponent>
+            </ns0:LoopComponent>
+          </ns0:ComponentBranch>
+          <ns0:ComponentBranch DisplayedText="Invalid Input" Description="Execution path when the specified branch is activated." Tag="" DebugModeActive="False" x:Name="componentBranch2">
+            <ns0:PromptPlaybackComponent Tag="" AcceptDtmfInput="True" DebugModeActive="False" PromptList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;ArrayOfPrompt xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;Prompt xsi:type=&quot;AudioFilePrompt&quot;&gt;&lt;AudioFileName&gt;transferirEjecutivo.wav&lt;/AudioFileName&gt;&lt;/Prompt&gt;&lt;/ArrayOfPrompt&gt;" x:Name="PromptEjecutivo3" />
+            <ns0:TransferComponent TransferToVoicemail="False" Destination="callflow$.anexoEjecutivo" Tag="" DebugModeActive="False" DelayMilliseconds="500" x:Name="TransferEjecutivo3" />
+          </ns0:ComponentBranch>
+        </ns0:UserInputComponent>
+      </ns0:MainFlow>
+    </MainFlow>
+    <ErrorHandlerFlow>
+      <ns0:ErrorHandlerFlow Description="Execution path when an error ocurrs." DebugModeActive="False" x:Name="Main" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ns0="clr-namespace:TCX.CFD.Classes.Components;Assembly=3CX Call Flow Designer, Version=18.5.8.0, Culture=neutral, PublicKeyToken=7cb95a1a133e706e" />
+    </ErrorHandlerFlow>
+    <DisconnectHandlerFlow>
+      <ns0:DisconnectHandlerFlow Description="Execution path since the call gets disconnected." DebugModeActive="False" x:Name="Main" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ns0="clr-namespace:TCX.CFD.Classes.Components;Assembly=3CX Call Flow Designer, Version=18.5.8.0, Culture=neutral, PublicKeyToken=7cb95a1a133e706e" />
+    </DisconnectHandlerFlow>
+  </Flows>
+</File>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Graphical_Application_Designer_Project>
+  <Version>2.1</Version>
+  <Files>
+    <File path="Main.flow" type="callflow" />
+  </Files>
+  <Variables>
+    <ArrayOfVariable xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </Variables>
+  <DebugBuildSuccessful>False</DebugBuildSuccessful>
+  <ReleaseBuildSuccessful>True</ReleaseBuildSuccessful>
+  <DebugBuildNumber>0</DebugBuildNumber>
+  <ReleaseBuildNumber>47</ReleaseBuildNumber>
+  <ChangedSinceLastDebugBuild>True</ChangedSinceLastDebugBuild>
+  <DoNotAskForExtension>False</DoNotAskForExtension>
+  <Extension>9967</Extension>
+  <OnlineServicesTextToSpeechEngine>AmazonPolly</OnlineServicesTextToSpeechEngine>
+  <OnlineServicesSpeechToTextEngine>None</OnlineServicesSpeechToTextEngine>
+  <AmazonClientID>AKIAQCGYYWTE6FE3ZDI6</AmazonClientID>
+  <AmazonClientSecret>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</AmazonClientSecret>
+  <AmazonRegion>sa-east-1</AmazonRegion>
+  <AmazonLexicons>
+  </AmazonLexicons>
+  <GoogleCloudServiceAccountKeyFileName>
+  </GoogleCloudServiceAccountKeyFileName>
+  <GoogleCloudServiceAccountKeyJSON>
+  </GoogleCloudServiceAccountKeyJSON>
+</Graphical_Application_Designer_Project>
